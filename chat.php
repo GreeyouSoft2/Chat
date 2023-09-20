@@ -27,8 +27,8 @@ if(isset($_POST['submit']) && $_POST['submit'] === "送信"){ // #1
     } 
        
     
-     header('Location:https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/chat.php');
-    header('Location:./chat.php');
+     header('https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/chat.php');
+    header('./chat.php');
     exit;   
   } // #1
 } 
