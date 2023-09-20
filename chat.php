@@ -1,3 +1,17 @@
+<?php   
+$J_file = "chatlog.json"; // ファイルパス格納
+date_default_timezone_set('Asia/Tokyo'); // タイムゾーンを日本にセット
+
+if(isset($_POST['submit']) && $_POST['submit'] === "送信"){ // #1
+    $chat = [];
+    $chat["person"] = "person1";
+    $chat["imgPath"] = "image/person1.png"; //画像ファイル名は任意
+    $chat["time"] = date("H:i");
+    $chat["text"] = htmlspecialchars($_POST['text'],ENT_QUOTES);
+
+    // 次はここに記述していきます。
+} // #1
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
