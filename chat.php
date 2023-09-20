@@ -30,8 +30,25 @@ if(isset($_POST['submit']) && $_POST['submit'] === "送信"){ // #1
      header('https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/chat.php');
     header('./chat.php');
     exit;   
-  } // #1
-} 
+  } 
+    .php
+} // #1
+if($file = file_get_contents($J_file)){
+    $file = json_decode($file);
+    $array = $file->chatlog;
+    foreach($array as $object){
+
+        if(isset($result)){
+            // 第二回目以降
+            $result =  $result.'<div class="'.$object->person.'"><p class="chat">'.str_replace("\r\n","<br>",$object->text).'<span class="chat-time">'.$object->time.'</span></p><img src="'.$object->imgPath.'"></div>';
+        }else{
+            // 第一回目
+            $result = '<div class="'.$object->person.'"><p class="chat">'.str_replace("\r\n","<br>",$object->text).'<span class="chat-time">'.$object->time.'</span></p><img src="'.$object->imgPath.'"></div>';
+        }
+
+
+    } 
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja">
