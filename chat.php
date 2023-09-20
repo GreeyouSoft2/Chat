@@ -25,6 +25,12 @@ if(isset($_POST['submit']) && $_POST['submit'] === "送信"){ // #1
       $json = '{"chatlog":['.$json.']}';
       file_put_contents($J_file,$json,FILE_APPEND | LOCK_EX);
     } 
+       
+    
+     header('Location:https://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/chat.php');
+    header('Location:./chat.php');
+    exit;   
+  } // #1
 } 
 ?>
 <!DOCTYPE html>
