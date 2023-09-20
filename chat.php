@@ -9,8 +9,23 @@ if(isset($_POST['submit']) && $_POST['submit'] === "送信"){ // #1
     $chat["time"] = date("H:i");
     $chat["text"] = htmlspecialchars($_POST['text'],ENT_QUOTES);
 
-    // 次はここに記述していきます。
-} // #1
+    $chat["text"] = htmlspecialchars($_POST['text'],ENT_QUOTES);
+
+    // 入力値格納処理
+    if($file = file_get_contents($J_file)){ // #2
+      // ファイルがある場合 追記処理
+      $file = str_replace(array(" ","\n","\r"),"",$file);
+      $file = mb_substr($file,0,mb_strlen($file)-2);
+      $json = json_encode($chat);
+      $json = $file.','.$json.']}';
+      file_put_contents($J_file,$json,LOCK_EX);
+    }else{ // #2
+      // ファイルがない場合 新規作成処理
+      $json = json_encode($chat);
+      $json = '{"chatlog":['.$json.']}';
+      file_put_contents($J_file,$json,FILE_APPEND | LOCK_EX);
+    } 
+} 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
